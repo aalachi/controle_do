@@ -29,5 +29,11 @@ On verifie la fonctionnalitem maintenabilite, securite et performance du code fo
         # Executer le script de test php dans le container app
         docker compose exec app php q_test.php
     ```
+
+
+### 2. Setup du workflow :
+    - creation du fichier .github/workflows/ci.yml
+    - enregistrement sur Docker Hub et generation de token prive
+    - ajout de variables environnement
     
 
