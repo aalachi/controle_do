@@ -7,12 +7,9 @@ On verifie la fonctionnalitem maintenabilite, securite et performance du code fo
 
 ### 1. Analyse statique 
 - Linting :\
-    app/index.php:\
-        - Invalid HTML Nesting: le tag h2 est ferme avant que le tag small est ferme.\
-        - Le tag cite n'est pas ferme correctement  ( cite a la place de /cite)
-
-    app/validation.php\
-        - !isset($_POST["title"]) doit etre !isset($_POST["authour"]) en 2eme elseif
+    - Invalid HTML Nesting: le tag h2 en app/index.php est ferme avant que le tag small est ferme.\
+    - Le tag cite en app/index.php n'est pas ferme correctement  ( cite a la place de /cite)
+    - !isset($_POST["title"]) en app/validation.php doit etre !isset($_POST["authour"]) en 2eme elseif
 
 - Security :
     - test SAST (Static Application Security Testing) va scanner le code contre les SQL injections pour voir si les requetes sont prepares ou concatene.
