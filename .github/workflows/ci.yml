@@ -21,7 +21,7 @@ jobs:
 
     # 2. Démarrer les conteneurs Docker
     - name: Start Docker Environment
-      run: docker-compose up -d --build
+      run: docker compose up -d --build
 
     # 3. Attendre que la base de données soit prête
     # (MySQL prend quelques secondes pour s'initialiser)
@@ -33,7 +33,7 @@ jobs:
     # 4. Exécuter le script de test de qualité
     # L'option -T est cruciale pour désactiver l'allocation de pseudo-TTY (nécessaire en CI)
     - name: Run Quality Tests (q_test.php)
-      run: docker-compose exec -T app php q_test.php
+      run: docker compose exec -T app php q_test.php
 
     # 5. Arrêter les conteneurs (Nettoyage)
     - name: Stop Containers
