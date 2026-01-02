@@ -22,6 +22,7 @@ function validate(PDO $PDO){
         $request->bindValue(":content", $_POST["content"]);
         $request->execute();
         header('Location: index.php'); 
+        exit();
     }
 
     echo '<p><a href="index.php">accueil</a></p>';
