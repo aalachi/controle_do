@@ -7,7 +7,7 @@ require 'db-config.php';
 
 function getArticles(PDO $PDO)
 {
-  $sql = "SELECT * FROM articles ORDER BY id DESC";
+  $sql = "SELECT id, title, content, author, date FROM articles ORDER BY id DESC";
   $result = $PDO->query($sql);
 
   $articles = $result->fetchAll(PDO::FETCH_ASSOC);
@@ -99,12 +99,11 @@ function getArticles(PDO $PDO)
         ?>
         <div class="card mt-5">
           <div class="card-header">
-            <h2 class="h3"><?= $article["title"] ?> <small class="text-muted font-italic"></h2>
-            <?= $articleTime ?></small>
+            <h2 class="h3"><?= htmlspecialchars($article["title"]) ?> <small class="text-muted font-italic"><?= $articleTime ?></small></h2>
           </div>
           <div class="card-body">
-            <p class="card-text"><?= $article["content"] ?></p>
-            <footer class="blockquote-footer"><cite title="Source Title"><?= $article["author"] ?><cite></footer>
+            <p class="card-text"><?= nl2br(htmlspecialchars($article["content"])) ?></p>
+            <footer class="blockquote-footer"><cite title="Source Title"><?= htmlspecialchars($article["author"]) ?></cite></footer>
           </div>
         </div>
       <?php

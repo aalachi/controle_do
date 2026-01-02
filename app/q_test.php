@@ -75,7 +75,7 @@ runTest("validation.php Logic (Author Check)", function() use ($files) {
 runTest("index.php HTML Syntax (Nesting & Tags)", function() use ($files) {
     $content = file_get_contents($files['index']);
     
-    if (preg_match('/<h2[^>]*>.*?<small[^>]*>.*?<\/h2>/s', $content)) return "Found invalid nesting: <h2> closed before <small>";
+    if (preg_match('/<h2[^>]*>.*?<small[^>]*>((?!<\/small>).)*?<\/h2>/s', $content)) return "Found invalid nesting: <h2> closed before <small>";
     if (preg_match('/<cite[^>]*>.*?<cite>/s', $content)) return "Found invalid closing tag: <cite> used instead of </cite>";
     
     return true;
