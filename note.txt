@@ -1,0 +1,11 @@
+
+
+
+To stop the swarm execute the following : 
+
+List swarm stacks
+- docker stack ls
+
+Remove the stack
+- docker stack rm <stack_name>
+ 
