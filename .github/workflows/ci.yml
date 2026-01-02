@@ -38,7 +38,7 @@ jobs:
     # 5. Arrêter les conteneurs (Nettoyage)
     - name: Stop Containers
       if: always() # S'exécute même si les tests échouent
-      run: docker-compose down
+      run: docker compose down
 
   build-and-push:
     needs: tests
