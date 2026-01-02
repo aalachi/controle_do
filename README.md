@@ -15,5 +15,5 @@ On verifie la fonctionnalitem maintenabilite, securite et performance du code fo
         - !isset($_POST["title"]) doit etre !isset($_POST["authour"]) en 2eme elseif
 
 - Security :
-
+    - L'application lis le contenu comme tel enregistre ce qui peut entraine a l'execution d'un script malicieux
 
