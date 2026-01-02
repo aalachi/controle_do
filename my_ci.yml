@@ -1,0 +1,7 @@
+on : 
+  push :
+    branches: ["main"]
+
+    paths:
+      - 'app/**'
+      - 'my_ci.yml'
