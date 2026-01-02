@@ -10,7 +10,7 @@ function validate(PDO $PDO){
     if(!isset($_POST["title"]) || empty($_POST["title"])) {
         echo '<p style="color: red; font-weight: bold;">Il manque le titre de l\'article</p>';
     }
-    elseif(!isset($_POST["title"]) || empty($_POST["author"])) {
+    elseif(!isset($_POST["author"]) || empty($_POST["author"])) {
         echo '<p style="color: red; font-weight: bold;">Il manque le nom de l\'auteur de l\'article</p>';
     }
     elseif(!isset($_POST["content"]) || empty($_POST["content"])) {
