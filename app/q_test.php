@@ -81,6 +81,16 @@ runTest("index.php HTML Syntax (Nesting & Tags)", function() use ($files) {
     return true;
 });
 
+// 4. Static Analysis: Security (XSS Check)
+runTest("index.php Security (XSS)", function() use ($files) {
+    $content = file_get_contents($files['index']);
+    // Check for direct output of $article variables without sanitization
+    if (preg_match('/<\?=\s*(?!htmlspecialchars)\$article\[/', $content)) {
+        return "Found potential XSS vulnerability: Outputting \$article data without htmlspecialchars()";
+    }
+    return true;
+});
+
 echo "===========================\n";
 echo "Tests Completed: $passCount Passed, $failCount Failed.\n";
 if ($failCount > 0) exit(1);
