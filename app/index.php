@@ -26,18 +26,18 @@ function getArticles(PDO $PDO)
 <html lang="fr">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Mon application test</title>
+  <title>Mon application test</title>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <!-- Bootstrap core CSS -->
-    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap core CSS -->
+  <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="navbar-top-fixed.css" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="navbar-top-fixed.css" rel="stylesheet">
 </head>
 
 <body>
@@ -99,11 +99,12 @@ function getArticles(PDO $PDO)
         ?>
         <div class="card mt-5">
           <div class="card-header">
-            <h2 class="h3"><?= htmlspecialchars($article["title"]) ?> <small class="text-muted font-italic"><?= $articleTime ?></small></h2>
+            <h2 class="h3"><?= $article["title"] ?> <small class="text-muted font-italic"></h2>
+            <?= $articleTime ?></small>
           </div>
           <div class="card-body">
-            <p class="card-text"><?= nl2br(htmlspecialchars($article["content"])) ?></p>
-            <footer class="blockquote-footer"><cite title="Source Title"><?= htmlspecialchars($article["author"]) ?></cite></footer>
+            <p class="card-text"><?= $article["content"] ?></p>
+            <footer class="blockquote-footer"><cite title="Source Title"><?= $article["author"] ?><cite></footer>
           </div>
         </div>
       <?php
