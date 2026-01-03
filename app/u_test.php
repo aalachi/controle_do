@@ -96,5 +96,58 @@ if ($foundArticle) {
     echo "Nettoyage des données de test effectué.\n";
 }
 
+// Test 3.4 : Vérification de la structure des données retournées
+if (!empty($articles)) {
+    $firstArticle = $articles[0];
+    $keys = ['id', 'title', 'content', 'author', 'date'];
+    $hasAllKeys = true;
+    foreach ($keys as $key) {
+        if (!array_key_exists($key, $firstArticle)) {
+            $hasAllKeys = false;
+            break;
+        }
+    }
+    assertTest($hasAllKeys, "Les articles contiennent toutes les clés requises (id, title, content, author, date)");
+}
+
+// Test 3.5 : Vérification de l'ordre de tri (DESC par ID)
+$title1 = "Test Order 1 " . uniqid();
+$title2 = "Test Order 2 " . uniqid();
+
+// On réutilise $stmt défini plus haut. Les champs author et content gardent les valeurs précédentes.
+$stmt->bindValue(':title', $title1);
+$stmt->execute();
+$id1 = $pdo->lastInsertId();
+
+// Petite pause pour simuler un délai (optionnel, l'ID fait foi)
+usleep(100000); 
+
+$stmt->bindValue(':title', $title2);
+$stmt->execute();
+$id2 = $pdo->lastInsertId();
+
+$articles = getArticles($pdo);
+
+// On cherche les positions des nouveaux articles
+$pos1 = array_search($id1, array_column($articles, 'id'));
+$pos2 = array_search($id2, array_column($articles, 'id'));
+
+assertTest($pos2 !== false && $pos1 !== false, "Les articles de test de tri sont bien retrouvés");
+assertTest($pos2 < $pos1, "L'article le plus récent (ID $id2) apparaît avant l'ancien (ID $id1)");
+
+// Test 3.6 : Gestion des caractères spéciaux (Robustesse)
+$specialTitle = "Test <script> ' \" & chars";
+$stmt->bindValue(':title', $specialTitle);
+$stmt->execute();
+$specialId = $pdo->lastInsertId();
+
+$articles = getArticles($pdo);
+$storedTitle = $articles[array_search($specialId, array_column($articles, 'id'))]['title'];
+
+assertTest($storedTitle === $specialTitle, "Les caractères spéciaux sont stockés fidèlement");
+
+// Nettoyage final des tests supplémentaires
+$pdo->exec("DELETE FROM articles WHERE id IN ($id1, $id2, $specialId)");
+
 echo "================================\n";
 echo "Tous les tests unitaires sont passés.\n";
