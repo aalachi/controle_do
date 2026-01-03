@@ -32,11 +32,14 @@ On verifie la fonctionnalitem maintenabilite, securite et performance du code fo
 
 
 ### 2. Setup du workflow :
+
     - Creation du fichier .github/workflows/ci.yml
     - Enregistrement sur Docker Hub et generation de token prive
     - Ajout de variables environnement
+    
 
 ### 3. Tests unitaires :
+
     - Verification que le fichier index.php existe
     - Verification du connexion à la base de données
     - Test d'insertion d'un article en base de donnee
